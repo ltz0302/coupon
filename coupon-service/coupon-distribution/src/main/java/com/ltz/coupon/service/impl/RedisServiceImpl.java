@@ -43,7 +43,7 @@ public class RedisServiceImpl implements IRedisService {
      *
      * @param userId 用户 id
      * @param status 优惠券状态 {@link CouponStatus}
-     * @return {@link Coupon}s, 注意, 可能会返回 null, 代表从没有过记录
+     * @return {@link Coupon}s, 注意, 可能会返回空列表, 代表从没有过记录
      */
     @Override
     public List<Coupon> getCachedCoupons(Long userId, Integer status) {

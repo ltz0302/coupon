@@ -27,7 +27,7 @@ public class ScheduledTask {
         this.templateDao = templateDao;
     }
 
-    //下线过期的优惠券模板
+    //更改过期的优惠券模板expired字段为true
     @Scheduled(fixedRate = 60 * 60 * 1000)
     public void offlineCouponTemplate() {
         log.info("Start To Expire CouponTemplate");
@@ -50,6 +50,7 @@ public class ScheduledTask {
             }
         });
 
+        //将更改后的模板保存回数据库(更改了expired字段)
         if (CollectionUtils.isNotEmpty(expiredTemplates)) {
             log.info("Expired CouponTemplate Num: {}",
                     templateDao.saveAll(expiredTemplates));

@@ -24,7 +24,7 @@ public interface IUserService {
      * @param status 优惠券状态
      * @return {@link Coupon}s
      * */
-    List<Coupon> findCouponByStatus(Long userId, Integer status) throws CouponException;
+    List<Coupon> findCouponsByStatus(Long userId, Integer status) throws CouponException;
 
     /**
      * <h2>根据用户 id 查找当前可以领取的优惠券模板</h2>

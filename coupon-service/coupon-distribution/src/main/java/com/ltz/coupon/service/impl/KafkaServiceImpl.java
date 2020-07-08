@@ -81,9 +81,9 @@ public class KafkaServiceImpl implements IKafkaService {
      * <h2>根据状态处理优惠券信息</h2>
      * */
     private void processCouponsByStatus(CouponKafkaMessage kafkaMessage, CouponStatus status){
-        //找到Kafka消息中相关的优惠券
+        //在DB中找到Kafka消息中相关的优惠券
         List<Coupon> coupons = couponDao.findAllById(kafkaMessage.getIds());
-        //校验
+        //校验DB中查到的优惠券是否正确
         if(CollectionUtils.isEmpty(coupons)||coupons.size()!=kafkaMessage.getIds().size()){
             log.error("Can Not Find Right Coupon Info: {}",
                     JSON.toJSONString(kafkaMessage));

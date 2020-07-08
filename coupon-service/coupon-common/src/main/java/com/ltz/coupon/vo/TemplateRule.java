@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
-//优惠券规则定义
+//优惠券规则定义,定义在common模块主要是供CouponTemplateSDK使用
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
