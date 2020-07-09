@@ -226,7 +226,7 @@ public class UserServiceImpl implements IUserService {
         // 填充 Coupon 对象的 CouponTemplateSDK, 一定要在放入缓存之前去填充,因为数据库不包含此字段
         /* id2template.get 从模板服务中获取优惠券模板信息,因为request中的模板信息可能被伪造不安全*/
         newCoupon.setTemplateSDK(id2template.get(request.getTemplateSDK().getId()));
-
+//        newCoupon.setTemplateSDK(request.getTemplateSDK());
         // 放入缓存中
         redisService.addCouponToCache(
                 request.getUserId(),

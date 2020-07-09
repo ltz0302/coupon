@@ -138,10 +138,13 @@ public class RedisServiceImpl implements IRedisService {
 
         switch (couponStatus) {
             case USABLE:
+                result = addCouponToCacheForUsable(userId, coupons);
                 break;
             case USED:
+                result = addCouponToCacheForUsed(userId, coupons);
                 break;
             case EXPIRED:
+                result = addCouponToCacheForExpired(userId, coupons);
                 break;
         }
         return result;

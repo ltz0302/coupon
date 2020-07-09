@@ -57,7 +57,7 @@
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
-            <version>2.2.0.RELEASE</version>
+            <version>2.5.0.RELEASE</version>
         </dependency>
         <!-- 通用模块 -->
         <dependency>
