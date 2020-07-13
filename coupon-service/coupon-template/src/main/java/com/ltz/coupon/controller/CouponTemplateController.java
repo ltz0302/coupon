@@ -1,6 +1,8 @@
 package com.ltz.coupon.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.ltz.coupon.annotation.CouponPermission;
+import com.ltz.coupon.annotation.IgnorePermission;
 import com.ltz.coupon.entity.CouponTemplate;
 import com.ltz.coupon.exception.CouponException;
 import com.ltz.coupon.service.IBuildTemplateService;
@@ -40,6 +42,7 @@ public class CouponTemplateController {
      * 127.0.0.1:9000/ltz/coupon-template/template/build
      * */
     @PostMapping("/template/build")
+    @CouponPermission(description = "buildTemplate", readOnly = false)
     public CouponTemplate buildTemplate(@RequestBody TemplateRequest request) throws CouponException {
        log.info("Build Template: {}", JSON.toJSONString(request));
        return buildTemplateService.buildTemplate(request);
@@ -51,6 +54,7 @@ public class CouponTemplateController {
      * 127.0.0.1:9000/ltz/coupon-template/template/info?id=1
      * */
     @GetMapping("/template/info")
+    @CouponPermission(description = "buildTemplateInfo")
     public CouponTemplate buildTemplateInfo(@RequestParam("id") Integer id) throws CouponException{
         log.info("Build Template Info For: {}", id);
         return templateBaseService.buildTemplateInfo(id);
@@ -62,6 +66,7 @@ public class CouponTemplateController {
      * 127.0.0.1:9000/ltz/coupon-template/template/sdk/all
      * */
     @GetMapping("/template/sdk/all")
+    @IgnorePermission
     public List<CouponTemplateSDK> findAllUsableTemplate(){
         log.info("Find All Usable Template.");
         return templateBaseService.findAllUsableTemplate();
