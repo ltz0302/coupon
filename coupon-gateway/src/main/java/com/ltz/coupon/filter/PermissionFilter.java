@@ -38,7 +38,7 @@ public class PermissionFilter extends AbsSecurityFilter {
         // 执行权限校验的逻辑
         // 从 Header 中获取到 userId
         Long userId = Long.valueOf(request.getHeader("userId"));
-        String uri = request.getRequestURI().substring("ltz".length());
+        String uri = request.getRequestURI().substring("/ltz".length());
         String httpMethod = request.getMethod();
 
         return permissionClient.checkPermission(new CheckPermissionRequest(userId,uri,httpMethod));

@@ -71,6 +71,7 @@ public class PermissionService {
         Path path = pathRepository.findByPathPatternAndHttpMethod(
                 uri, httpMethod
         );
+
         if (null == path) {
             return true;
         }
