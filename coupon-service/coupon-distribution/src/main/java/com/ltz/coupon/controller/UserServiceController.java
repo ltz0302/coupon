@@ -28,6 +28,7 @@ public class UserServiceController {
 
     /**
      * <h2>根据用户 id 和优惠券状态查找用户优惠券记录</h2>
+     * 127.0.0.1:9000/ltz/coupon-distribution/coupons?userId=1&status=1
      * */
     @GetMapping("/coupons")
     public List<Coupon> findCouponsByStatus(
@@ -40,6 +41,7 @@ public class UserServiceController {
 
     /**
      * <h2>根据用户 id 查找当前可以领取的优惠券模板</h2>
+     * 127.0.0.1:9000/ltz/coupon-distribution/template?userId=1
      * */
     @GetMapping("/template")
     public List<CouponTemplateSDK> findAvailableTemplate(
@@ -51,6 +53,7 @@ public class UserServiceController {
 
     /**
      * <h2>用户领取优惠券</h2>
+     * 127.0.0.1:9000/ltz/coupon-distribution/acquire/template
      * */
     @PostMapping("/acquire/template")
     public Coupon acquireTemplate(@RequestBody AcquireTemplateRequest request)
@@ -62,6 +65,7 @@ public class UserServiceController {
 
     /**
      * <h2>结算(核销)优惠券</h2>
+     * 127.0.0.1:9000/ltz/coupon-distribution/settlement
      * */
     @PostMapping("/settlement")
     public SettlementInfo settlement(@RequestBody SettlementInfo info)
