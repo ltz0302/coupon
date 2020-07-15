@@ -7,11 +7,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 //根据是否有注解判断是否需要响应处理
 @RestControllerAdvice
+@ControllerAdvice(basePackages = "com.ltz.coupon.controller")
 public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
 
     //判断是否需要对响应进行处理

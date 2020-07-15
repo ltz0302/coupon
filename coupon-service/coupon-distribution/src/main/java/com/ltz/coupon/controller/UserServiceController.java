@@ -7,6 +7,8 @@ import com.ltz.coupon.service.IUserService;
 import com.ltz.coupon.vo.AcquireTemplateRequest;
 import com.ltz.coupon.vo.CouponTemplateSDK;
 import com.ltz.coupon.vo.SettlementInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
+@Api(tags = "UserServiceController", description = "优惠券分发模块")
 public class UserServiceController {
 
     private final IUserService userService;
@@ -31,6 +34,7 @@ public class UserServiceController {
      * 127.0.0.1:9000/ltz/coupon-distribution/coupons?userId=1&status=1
      * */
     @GetMapping("/coupons")
+    @ApiOperation("根据状态查找用户优惠券记录")
     public List<Coupon> findCouponsByStatus(
             @RequestParam("userId") Long userId,
             @RequestParam("status") Integer status) throws CouponException {
@@ -44,6 +48,7 @@ public class UserServiceController {
      * 127.0.0.1:9000/ltz/coupon-distribution/template?userId=1
      * */
     @GetMapping("/template")
+    @ApiOperation("查找用户可以领取的优惠券")
     public List<CouponTemplateSDK> findAvailableTemplate(
             @RequestParam("userId") Long userId) throws CouponException {
 
@@ -56,6 +61,7 @@ public class UserServiceController {
      * 127.0.0.1:9000/ltz/coupon-distribution/acquire/template
      * */
     @PostMapping("/acquire/template")
+    @ApiOperation("领取优惠券")
     public Coupon acquireTemplate(@RequestBody AcquireTemplateRequest request)
             throws CouponException {
 
@@ -68,6 +74,7 @@ public class UserServiceController {
      * 127.0.0.1:9000/ltz/coupon-distribution/settlement
      * */
     @PostMapping("/settlement")
+    @ApiOperation("结算优惠券")
     public SettlementInfo settlement(@RequestBody SettlementInfo info)
             throws CouponException {
 

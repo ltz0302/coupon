@@ -2,6 +2,8 @@ package com.ltz.coupon.controller;
 
 
 import com.ltz.coupon.exception.CouponException;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -20,6 +22,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
+@Api(tags = "HealthCheck", description = "健康检查")
 public class HealthCheck {
     //服务发现客户端
     private final DiscoveryClient client;
@@ -39,6 +42,7 @@ public class HealthCheck {
      * 127.0.0.1:9000/ltz/coupon-template/health
      */
     @GetMapping("/health")
+    @ApiOperation("健康检查")
     public String health() {
         log.debug("view health api");
         return "CouponTemplate Is OK!";
@@ -50,6 +54,7 @@ public class HealthCheck {
      * 127.0.0.1:9000/ltz/coupon-template/exception
      */
     @GetMapping("exception")
+    @ApiOperation("异常测试")
     public String exception() throws CouponException {
         log.debug("view exception api");
         throw new CouponException("CouponTemplate Has Some Problem");
@@ -61,6 +66,7 @@ public class HealthCheck {
      * 127.0.0.1:9000/ltz/coupon-template/info
      */
     @GetMapping("/info")
+    @ApiOperation("获取微服务元信息")
     public List<Map<String, Object>> info() {
 
         // 大约需要等待两分钟时间才能获取到注册信息

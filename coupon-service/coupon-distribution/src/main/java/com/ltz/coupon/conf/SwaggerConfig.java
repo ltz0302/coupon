@@ -1,6 +1,5 @@
 package com.ltz.coupon.conf;
 
-import com.ltz.coupon.annotation.IgnoreResponseAdvice;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
@@ -37,8 +36,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("优惠券模板服务")
-                .description("coupon-template")
+                .title("优惠券分发服务")
+                .description("coupon-distribution")
                 .contact("ltz")
                 .version("1.0")
                 .build();
