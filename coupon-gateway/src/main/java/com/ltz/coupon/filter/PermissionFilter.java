@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * <h1>权限过滤器实现</h1>
  */
 @Slf4j
-@Component
+//@Component
 public class PermissionFilter extends AbsSecurityFilter {
 
     private final PermissionClient permissionClient;

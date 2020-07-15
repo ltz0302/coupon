@@ -1,4 +1,4 @@
-package com.ltz.coupon.config;
+package com.ltz.coupon.conf;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;

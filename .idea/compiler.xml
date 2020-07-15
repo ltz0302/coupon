@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="coupon-eureka" />
         <module name="coupon-template" />
+        <module name="test" />
         <module name="coupon-common" />
         <module name="coupon-distribution" />
         <module name="coupon-permission-sdk" />
@@ -19,6 +20,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="q" target="1.8" />
+      <module name="test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -34,6 +36,7 @@
       <module name="coupon-settlement" options="-parameters" />
       <module name="coupon-template" options="-parameters" />
       <module name="q" options="-parameters" />
+      <module name="test" options="-parameters" />
     </option>
   </component>
 </project>

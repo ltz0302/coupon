@@ -76,7 +76,7 @@ public class PermissionDetectListener implements ApplicationListener<Application
         // 取出 context 前缀
         String pathPrefix = ctx.getEnvironment().getProperty(KEY_SERVER_CTX);
 
-        // 取出 Spring 的映射 bean
+        // 取出 Spring 的映射 controller
         RequestMappingHandlerMapping mappingBean =
                 (RequestMappingHandlerMapping)
                         ctx.getBean("requestMappingHandlerMapping");

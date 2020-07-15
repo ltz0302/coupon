@@ -27,8 +27,8 @@ public class UserServiceTest {
     /** fake 一个 TemplateRequest */
     private TemplateRule.Expiration expiration = new TemplateRule.Expiration(1,1,new Date().getTime()+1000000);
     private TemplateRule templateRule = new TemplateRule(expiration,null,2,null,null);
-    private CouponTemplateSDK couponTemplateSDK = new CouponTemplateSDK(13,"优惠券模板-1594280140415",
-            "http://www.baidu.com","这是一张优惠券模板","001",2,"200120200709",1,templateRule);
+    private CouponTemplateSDK couponTemplateSDK = new CouponTemplateSDK(4,"优惠券模板-1594710369239",
+            "http://www.baidu.com","这是一张优惠券模板","001",2,"200120200714",1,templateRule);
     private AcquireTemplateRequest acquireTemplateRequest = new AcquireTemplateRequest(fakeUserId,couponTemplateSDK);
 
 
