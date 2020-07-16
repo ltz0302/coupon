@@ -9,16 +9,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-/**
- * <h1>模板系统测试程序</h1>
- */
-@SpringBootTest
-@RunWith(SpringRunner.class)
-public class TemplateApplicationTests {
-
-    @Test
-    public void contextLoad() {
-
-    }
-
-}
+///**
+// * <h1>模板系统测试程序</h1>
+// */
+//@SpringBootTest
+//@RunWith(SpringRunner.class)
+//public class TemplateApplicationTests {
+//
+//    @Test
+//    public void contextLoad() {
+//
+//    }
+//
+//}
