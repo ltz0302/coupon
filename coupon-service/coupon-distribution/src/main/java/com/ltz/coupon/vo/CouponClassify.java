@@ -45,8 +45,10 @@ public class CouponClassify {
             //过期时间和领取时间有关
             else {
                 isTimeExpire = DateUtils.addDays(c.getAssignTime(),c.getTemplateSDK().getRule()
-                        .getExpiration().getGap()).getTime()<=curTime;
+                        .getExpiration().getGap()).getTime()<=curTime
+                || c.getTemplateSDK().getRule().getExpiration().getDeadline()<=curTime;
             }
+
             if(c.getStatus() == CouponStatus.USED){
                 used.add(c);
             }
