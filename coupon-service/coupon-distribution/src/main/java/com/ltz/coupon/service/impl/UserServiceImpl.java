@@ -103,7 +103,9 @@ public class UserServiceImpl implements IUserService {
             if (CollectionUtils.isNotEmpty(couponClassify.getExpired())) {
                 log.info("Add Expired Coupons To Cache From FindCouponsByStatus:{},{}", userId, status);
                 //在Redis中处理过期的优惠券
-                redisService.addCouponToCache(userId, couponClassify.getExpired(), CouponStatus.EXPIRED.getCode());
+                List<Coupon> expiredCoupons = couponClassify.getExpired();
+                expiredCoupons.forEach(c -> c.setStatus(CouponStatus.EXPIRED));
+                redisService.addCouponToCache(userId, expiredCoupons, CouponStatus.EXPIRED.getCode());
                 //发送消息到Kafka中做异步处理，将过期的优惠券存入DB
                 kafkaTemplate.send(Constant.TOPIC, JSON.toJSONString(new CouponKafkaMessage(
                                 CouponStatus.EXPIRED.getCode(),
@@ -240,9 +242,7 @@ public class UserServiceImpl implements IUserService {
 
     /**
      * <h2>结算(核销)优惠券</h2>
-     * 需要注意, 规则相关处理需要由 Settlement 系统去做, 当前系统仅仅做
-     * 业务处理过程(校验过程)
-     *
+     * 需要注意, 规则相关处理需要由 Settlement 系统去做, 当前系统仅仅做业务处理过程(校验过程)
      * @param info {@link SettlementInfo}
      * @return {@link SettlementInfo}
      */
@@ -294,6 +294,7 @@ public class UserServiceImpl implements IUserService {
             log.info("Settle User Coupon: {}, {}", info.getUserId(),
                     JSON.toJSONString(settleCoupons));
             //更新缓存
+            settleCoupons.forEach(c -> c.setStatus(CouponStatus.USED) );
             redisService.addCouponToCache(info.getUserId(), settleCoupons, CouponStatus.USED.getCode());
             //更新db
             kafkaTemplate.send(Constant.TOPIC, JSON.toJSONString(new CouponKafkaMessage(
