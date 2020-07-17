@@ -55,8 +55,7 @@ public class ExecuteManager implements BeanPostProcessor {
                     result = executorIndex.get(RuleFlag.LIJIAN).computeRule(settlement);
                     break;
             }
-        }
-        else{
+        } else {
             // 多类优惠券
             List<CouponCategory> categories = new ArrayList<>(
                     settlement.getCouponAndTemplateInfos().size()
@@ -66,16 +65,17 @@ public class ExecuteManager implements BeanPostProcessor {
                     categories.add(CouponCategory.of(
                             ct.getTemplate().getCategory()
                     )));
-            if(categories.size() != 2) {
+            if (categories.size() != 2) {
                 throw new CouponException("Not Support For More" +
                         "Template Category");
-            }
-            else {
+            } else {
                 if (categories.contains(CouponCategory.MANJIAN)
-                        &&categories.contains(CouponCategory.ZHEKOU)){
+                        && categories.contains(CouponCategory.ZHEKOU)) {
                     result = executorIndex.get(RuleFlag.MANJIAN_ZHEKOU).computeRule(settlement);
-                }
-                else {
+                } else if (categories.contains(CouponCategory.MANJIAN)
+                        && categories.contains(CouponCategory.LIJIAN)) {
+                    result = executorIndex.get(RuleFlag.MANJIAN_LIJIAN).computeRule(settlement);
+                } else {
                     throw new CouponException("Not Support For Other " +
                             "Template Category");
                 }
@@ -88,18 +88,18 @@ public class ExecuteManager implements BeanPostProcessor {
     /**
      * <h2>在 bean 初始化之前去执行(before)</h2>
      * bean 为实例化的 executer
-     * */
+     */
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 
-        if(!(bean instanceof RuleExecutor)){
+        if (!(bean instanceof RuleExecutor)) {
             return bean;
         }
 
         RuleExecutor executor = (RuleExecutor) bean;
         RuleFlag ruleFlag = executor.ruleConfig();
 
-        if(executorIndex.containsKey(ruleFlag)){
+        if (executorIndex.containsKey(ruleFlag)) {
             throw new IllegalStateException("There is already an executor" +
                     "for rule flag: " + ruleFlag);
         }
@@ -114,7 +114,7 @@ public class ExecuteManager implements BeanPostProcessor {
 
     /**
      * <h2>在 bean 初始化之后去执行(after)</h2>
-     * */
+     */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         return bean;

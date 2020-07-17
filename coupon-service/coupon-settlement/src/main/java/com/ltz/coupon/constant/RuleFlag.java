@@ -16,7 +16,8 @@ public enum  RuleFlag {
     LIJIAN("立减券的计算规则"),
 
     // 多类别优惠券定义
-    MANJIAN_ZHEKOU("满减券+折扣券计算规则");
+    MANJIAN_ZHEKOU("满减券+折扣券计算规则"),
+    MANJIAN_LIJIAN("满减券+立减券计算规则");
 
     // TODO 更多优惠券类别的组合
 
