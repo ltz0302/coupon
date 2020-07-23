@@ -50,7 +50,7 @@ public class TemplateBaseServiceImpl implements ITemplateBaseService {
      * @return {@link CouponTemplateSDK}s
      */
     @Override
-    public List<CouponTemplateSDK> findAllUsableTemplate() {
+    public List<CouponTemplateSDK> findAllUsableTemplateSDK() {
         List<CouponTemplate> templates =
                 templateDao.findAllByAvailableAndExpired(
                         true, false);

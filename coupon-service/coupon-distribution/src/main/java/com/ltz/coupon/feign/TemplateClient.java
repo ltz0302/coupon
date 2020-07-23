@@ -22,7 +22,7 @@ public interface TemplateClient {
      * <h2>查找所有可用的优惠券模板<h2/>
      **/
     @RequestMapping(value = "/coupon-template/template/sdk/all", method = RequestMethod.GET)
-    CommonResponse<List<CouponTemplateSDK>> findAllUsableTemplate();
+    CommonResponse<List<CouponTemplateSDK>> findAllUsableTemplateSDK();
 
     /**
      * <h2>获取模板ids到CouponTemplateSDK<h2/>

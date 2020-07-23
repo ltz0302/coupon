@@ -24,7 +24,7 @@ public interface ITemplateBaseService {
      * <h2>查找所有可用的优惠券模板</h2>
      * @return {@link CouponTemplateSDK}s
      * */
-    List<CouponTemplateSDK> findAllUsableTemplate();
+    List<CouponTemplateSDK> findAllUsableTemplateSDK();
 
     /**
      * <h2>获取模板 ids 到 CouponTemplateSDK 的映射</h2>

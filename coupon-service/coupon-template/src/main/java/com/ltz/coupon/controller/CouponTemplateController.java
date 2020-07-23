@@ -76,9 +76,9 @@ public class CouponTemplateController {
     @GetMapping("/template/sdk/all")
 //    @IgnorePermission
     @ApiOperation("查找所有可用的优惠券模板")
-    public List<CouponTemplateSDK> findAllUsableTemplate() {
-        log.info("Find All Usable Template.");
-        return templateBaseService.findAllUsableTemplate();
+    public List<CouponTemplateSDK> findAllUsableTemplateSDK() {
+        log.info("Find All Usable TemplateSDK.");
+        return templateBaseService.findAllUsableTemplateSDK();
     }
 
     /**

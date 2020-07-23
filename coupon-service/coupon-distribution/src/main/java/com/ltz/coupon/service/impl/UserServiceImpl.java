@@ -128,7 +128,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public List<CouponTemplateSDK> findAvailableTemplate(Long userId) throws CouponException {
         long curTime = new Date().getTime();
-        List<CouponTemplateSDK> templateSDKS = templateClient.findAllUsableTemplate().getData();
+        List<CouponTemplateSDK> templateSDKS = templateClient.findAllUsableTemplateSDK().getData();
 
         log.debug("Find All Template(From TemplateClint) Count: {}", templateSDKS.size());
 
