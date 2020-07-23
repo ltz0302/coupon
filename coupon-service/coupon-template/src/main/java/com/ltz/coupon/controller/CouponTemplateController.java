@@ -54,6 +54,31 @@ public class CouponTemplateController {
 
     /**
      * <h2>构造优惠券模板详情</h2>
+     * 127.0.0.1:7001/coupon-template/template/usable
+     * 127.0.0.1:9000/ltz/coupon-template/template/usable
+     */
+    @GetMapping("/template/usable")
+    @ApiOperation("查看可用的优惠券模板列表")
+    public List<CouponTemplate> findUsableTemplate() throws CouponException {
+        log.info("Find All Usable Template");
+        return templateBaseService.findUsableTemplate();
+    }
+
+    /**
+     * <h2>构造优惠券模板详情</h2>
+     * 127.0.0.1:7001/coupon-template/template/expired
+     * 127.0.0.1:9000/ltz/coupon-template/template/usable
+     */
+    @GetMapping("/template/expired")
+    @ApiOperation("查看过期的优惠券模板列表")
+    public List<CouponTemplate> findExpiredTemplate() throws CouponException {
+        log.info("Find All Expired Template");
+        return templateBaseService.findExpiredTemplate();
+    }
+
+
+    /**
+     * <h2>构造优惠券模板详情</h2>
      * 127.0.0.1:7001/coupon-template/template/info?id=1
      * 127.0.0.1:9000/ltz/coupon-template/template/info?id=1
      */
@@ -64,7 +89,6 @@ public class CouponTemplateController {
         log.info("Build Template Info For: {}", id);
         return templateBaseService.buildTemplateInfo(id);
     }
-
 
     /* 下面两个接口供分发服务调用 */
 

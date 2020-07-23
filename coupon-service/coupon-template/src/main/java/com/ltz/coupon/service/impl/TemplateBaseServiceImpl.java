@@ -60,6 +60,27 @@ public class TemplateBaseServiceImpl implements ITemplateBaseService {
     }
 
     /**
+     * <h2>查找所有可用的优惠券模板</h2>
+     *
+     * @return {@link CouponTemplate}
+     */
+    @Override
+    public List<CouponTemplate> findUsableTemplate() {
+        return templateDao.findAllByAvailableAndExpired(
+                true, false);
+    }
+
+    /**
+     * <h2>查找所有过期的优惠券模板</h2>
+     *
+     * @return {@link CouponTemplate}
+     */
+    @Override
+    public List<CouponTemplate> findExpiredTemplate() {
+        return templateDao.findAllByExpired(true);
+    }
+
+    /**
      * <h2>获取模板 ids 到 CouponTemplateSDK 的映射</h2>
      *
      * @param ids 模板 ids

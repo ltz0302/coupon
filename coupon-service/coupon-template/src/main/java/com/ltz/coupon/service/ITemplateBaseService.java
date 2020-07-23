@@ -21,10 +21,24 @@ public interface ITemplateBaseService {
     CouponTemplate buildTemplateInfo(Integer id) throws CouponException;
 
     /**
-     * <h2>查找所有可用的优惠券模板</h2>
-     * @return {@link CouponTemplateSDK}s
+     * <h2>查找所有可用的优惠券模板SDK</h2>
+     * @return {@link CouponTemplateSDK}
      * */
     List<CouponTemplateSDK> findAllUsableTemplateSDK();
+
+    /**
+     * <h2>查找所有可用的优惠券模板</h2>
+     * @return {@link CouponTemplate}s
+     * */
+    List<CouponTemplate> findUsableTemplate();
+
+
+    /**
+     * <h2>查找所有过期的优惠券模板</h2>
+     * @return {@link CouponTemplate}s
+     * */
+    List<CouponTemplate> findExpiredTemplate();
+
 
     /**
      * <h2>获取模板 ids 到 CouponTemplateSDK 的映射</h2>
