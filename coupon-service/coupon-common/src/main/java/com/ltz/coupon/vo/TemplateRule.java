@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Date;
+
 //优惠券规则定义,定义在common模块主要是供CouponTemplateSDK使用
 @Data
 @AllArgsConstructor
@@ -44,11 +46,12 @@ public class TemplateRule {
         private Integer gap;
 
         //优惠券失效日期,两类规则都有效
-        private Long deadline;
+//        private Long deadline;
+        private Date deadline;
 
         boolean validate(){
             //最简化校验
-            return null != PeriodType.of(period) && gap >0 &&deadline > 0;
+            return null != PeriodType.of(period) && gap >0 &&deadline.getTime() > 0;
         }
     }
 

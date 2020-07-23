@@ -35,18 +35,19 @@ public class CouponClassify {
         coupons.forEach(c->{
             //判断优惠券是否过期
             boolean isTimeExpire;
-            long curTime = new Date().getTime();
+//            long curTime = new Date().getTime();
+            Date curTime = new Date();
             //固定时间过期
             if(c.getTemplateSDK().getRule().getExpiration().getPeriod().equals(
                     PeriodType.REGULAR.getCode()
             )){
-                isTimeExpire = c.getTemplateSDK().getRule().getExpiration().getDeadline()<=curTime;
+                isTimeExpire = c.getTemplateSDK().getRule().getExpiration().getDeadline().getTime()<=curTime.getTime();
             }
             //过期时间和领取时间有关
             else {
                 isTimeExpire = DateUtils.addDays(c.getAssignTime(),c.getTemplateSDK().getRule()
-                        .getExpiration().getGap()).getTime()<=curTime
-                || c.getTemplateSDK().getRule().getExpiration().getDeadline()<=curTime;
+                        .getExpiration().getGap()).getTime()<=curTime.getTime()
+                || c.getTemplateSDK().getRule().getExpiration().getDeadline().getTime()<=curTime.getTime();
             }
 
             if(c.getStatus() == CouponStatus.USED){

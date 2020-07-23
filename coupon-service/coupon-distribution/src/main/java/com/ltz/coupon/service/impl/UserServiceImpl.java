@@ -133,7 +133,7 @@ public class UserServiceImpl implements IUserService {
         log.debug("Find All Template(From TemplateClint) Count: {}", templateSDKS.size());
 
         /* 过滤过期的优惠券模板,因为对过期优惠券模板的处理在Template模块下为定时任务,查询时可能存在未被处理的过期模板 */
-        templateSDKS = templateSDKS.stream().filter(t -> t.getRule().getExpiration().getDeadline() > curTime).collect(Collectors.toList());
+        templateSDKS = templateSDKS.stream().filter(t -> t.getRule().getExpiration().getDeadline().getTime() > curTime).collect(Collectors.toList());
 
         log.info("Find Usable Template Count: {}", templateSDKS.size());
 

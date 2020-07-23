@@ -9,12 +9,12 @@
         <module name="coupon-eureka" />
         <module name="coupon-template" />
         <module name="test" />
-        <module name="coupon-settlement" />
+        <module name="coupon-common" />
         <module name="coupon-distribution" />
         <module name="coupon-permission-sdk" />
         <module name="coupon-gateway" />
         <module name="coupon-permission-detector" />
-        <module name="coupon-common" />
+        <module name="coupon-settlement" />
         <module name="coupon-permission-service" />
       </profile>
     </annotationProcessing>
