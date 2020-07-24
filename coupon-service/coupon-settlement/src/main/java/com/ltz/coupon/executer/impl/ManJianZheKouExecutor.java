@@ -94,13 +94,13 @@ public class ManJianZheKouExecutor extends AbstractExecutor implements RuleExecu
         assert null != manJian;
         assert null != zheKou;
 
-        // 当前的折扣优惠券和满减优惠券不能一起使用,清空优惠券,返回商品原价
-        if(!isTemplateCanShared(manJian,zheKou)) {
-            log.debug("Current ManJian And ZheKou Can Not Shared!");
-            settlement.setCost(goodsSum);
-            settlement.setCouponAndTemplateInfos(Collections.emptyList());
-            return settlement;
-        }
+//        // 当前的折扣优惠券和满减优惠券不能一起使用,清空优惠券,返回商品原价
+//        if(!isTemplateCanShared(manJian,zheKou)) {
+//            log.debug("Current ManJian And ZheKou Can Not Shared!");
+//            settlement.setCost(goodsSum);
+//            settlement.setCouponAndTemplateInfos(Collections.emptyList());
+//            return settlement;
+//        }
 
         //实际使用的优惠券
         List<SettlementInfo.CouponAndTemplateInfo> ctInfos = new ArrayList<>();
@@ -132,39 +132,39 @@ public class ManJianZheKouExecutor extends AbstractExecutor implements RuleExecu
     }
 
 
-    /**
-     * <h2>当前的两张优惠券是否可以共用</h2>
-     * 即校验 TemplateRule 中的 weight 是否满足条件
-     */
-    @SuppressWarnings("all")
-    private boolean
-    isTemplateCanShared(SettlementInfo.CouponAndTemplateInfo manJian,
-                        SettlementInfo.CouponAndTemplateInfo zheKou) {
-
-        String manjianKey = manJian.getTemplate().getKey()
-                + String.format("%04d", manJian.getTemplate().getId());
-        String zhekouKey = zheKou.getTemplate().getKey()
-                + String.format("%04d", zheKou.getTemplate().getId());
-
-        //将满减券本身和在weight中标识的可共用优惠券加入列表
-        List<String> allSharedKeysForManjian = new ArrayList<>();
-        allSharedKeysForManjian.add(manjianKey);
-        allSharedKeysForManjian.addAll(JSON.parseObject(
-                manJian.getTemplate().getRule().getWeight(),
-                List.class
-        ));
-
-        List<String> allSharedKeysForZhekou = new ArrayList<>();
-        allSharedKeysForZhekou.add(zhekouKey);
-        allSharedKeysForZhekou.addAll(JSON.parseObject(
-                zheKou.getTemplate().getRule().getWeight(),
-                List.class
-        ));
-
-        return CollectionUtils.isSubCollection(
-                Arrays.asList(manjianKey, zhekouKey), allSharedKeysForManjian)
-                || CollectionUtils.isSubCollection(
-                Arrays.asList(manjianKey, zhekouKey), allSharedKeysForZhekou
-        );
-    }
+//    /**
+//     * <h2>当前的两张优惠券是否可以共用</h2>
+//     * 即校验 TemplateRule 中的 weight 是否满足条件
+//     */
+//    @SuppressWarnings("all")
+//    private boolean
+//    isTemplateCanShared(SettlementInfo.CouponAndTemplateInfo manJian,
+//                        SettlementInfo.CouponAndTemplateInfo zheKou) {
+//
+//        String manjianKey = manJian.getTemplate().getKey()
+//                + String.format("%04d", manJian.getTemplate().getId());
+//        String zhekouKey = zheKou.getTemplate().getKey()
+//                + String.format("%04d", zheKou.getTemplate().getId());
+//
+//        //将满减券本身和在weight中标识的可共用优惠券加入列表
+//        List<String> allSharedKeysForManjian = new ArrayList<>();
+//        allSharedKeysForManjian.add(manjianKey);
+//        allSharedKeysForManjian.addAll(JSON.parseObject(
+//                manJian.getTemplate().getRule().getWeight(),
+//                List.class
+//        ));
+//
+//        List<String> allSharedKeysForZhekou = new ArrayList<>();
+//        allSharedKeysForZhekou.add(zhekouKey);
+//        allSharedKeysForZhekou.addAll(JSON.parseObject(
+//                zheKou.getTemplate().getRule().getWeight(),
+//                List.class
+//        ));
+//
+//        return CollectionUtils.isSubCollection(
+//                Arrays.asList(manjianKey, zhekouKey), allSharedKeysForManjian)
+//                || CollectionUtils.isSubCollection(
+//                Arrays.asList(manjianKey, zhekouKey), allSharedKeysForZhekou
+//        );
+//    }
 }

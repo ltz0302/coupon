@@ -7,6 +7,7 @@ import com.ltz.coupon.entity.CouponTemplate;
 import com.ltz.coupon.exception.CouponException;
 import com.ltz.coupon.service.IBuildTemplateService;
 import com.ltz.coupon.service.ITemplateBaseService;
+import com.ltz.coupon.vo.CouponTemplateInfo;
 import com.ltz.coupon.vo.CouponTemplateSDK;
 import com.ltz.coupon.vo.TemplateRequest;
 import io.swagger.annotations.Api;
@@ -76,7 +77,7 @@ public class CouponTemplateController {
         return templateBaseService.findExpiredTemplate();
     }
 
-
+    /* 早期版本返回CouponTemplate实体类，当前改为返回CouponTemplateInfo供前端展示 */
     /**
      * <h2>构造优惠券模板详情</h2>
      * 127.0.0.1:7001/coupon-template/template/info?id=1
@@ -85,9 +86,10 @@ public class CouponTemplateController {
     @GetMapping("/template/info")
 //    @CouponPermission(description = "buildTemplateInfo")
     @ApiOperation("获取优惠券模板详情")
-    public CouponTemplate buildTemplateInfo(@RequestParam("id") Integer id) throws CouponException {
+    public CouponTemplateInfo buildTemplateInfo(@RequestParam("id") Integer id) throws CouponException {
         log.info("Build Template Info For: {}", id);
-        return templateBaseService.buildTemplateInfo(id);
+//        return templateBaseService.buildTemplateInfo(id);
+        return CouponTemplateInfo.to(templateBaseService.buildTemplateInfo(id));
     }
 
     /* 下面两个接口供分发服务调用 */

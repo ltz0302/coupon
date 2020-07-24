@@ -23,14 +23,14 @@ public class TemplateRule {
     private Integer limitation;
     //使用范围: 地域+商品类型
     private Usage usage;
-    //权重(可以和哪些优惠券叠加使用, 同一类的优惠券一定不能叠加): list[], 优惠券的唯一编码
-    private String weight;
+//    //权重(可以和哪些优惠券叠加使用, 同一类的优惠券一定不能叠加): list[], 优惠券的唯一编码
+//    private String weight;
 
     //校验功能
     public boolean validate(){
         return expiration.validate()&&discount.validate()
-                &&limitation>0 && usage.validate()
-                && StringUtils.isNotEmpty(weight);
+                &&limitation>0 && usage.validate();
+//                && StringUtils.isNotEmpty(weight);
     }
 
     //有效期规则
