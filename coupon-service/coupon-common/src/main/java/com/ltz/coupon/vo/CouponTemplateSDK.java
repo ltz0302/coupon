@@ -1,5 +1,7 @@
 package com.ltz.coupon.vo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.ltz.coupon.serialization.CouponTemplateSDKSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonSerialize(using = CouponTemplateSDKSerialize.class)
 public class CouponTemplateSDK {
 
     /** 优惠券模板主键 */

@@ -77,7 +77,7 @@ public class CouponTemplateController {
         return templateBaseService.findExpiredTemplate();
     }
 
-    /* 早期版本返回CouponTemplate实体类，当前改为返回CouponTemplateInfo供前端展示 */
+    /* 早期版本返回CouponTemplate实体类，因为没有被使用改为返回CouponTemplateInfo供前端展示 */
     /**
      * <h2>构造优惠券模板详情</h2>
      * 127.0.0.1:7001/coupon-template/template/info?id=1

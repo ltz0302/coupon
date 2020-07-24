@@ -28,14 +28,14 @@ public interface ITemplateBaseService {
 
     /**
      * <h2>查找所有可用的优惠券模板</h2>
-     * @return {@link CouponTemplate}s
+     * @return {@link CouponTemplate}
      * */
     List<CouponTemplate> findUsableTemplate();
 
 
     /**
      * <h2>查找所有过期的优惠券模板</h2>
-     * @return {@link CouponTemplate}s
+     * @return {@link CouponTemplate}
      * */
     List<CouponTemplate> findExpiredTemplate();
 

@@ -169,6 +169,19 @@ public class UserServiceImpl implements IUserService {
     }
 
     /**
+     * <h2>根据优惠券模板 id 查找优惠券模板详情</h2>
+     *
+     * @param id 优惠券模板id
+     * @return {@link TemplateInfo}
+     */
+    @Override
+    public TemplateInfo findId2TemplateInfo(Integer id) throws CouponException {
+        Map<Integer, CouponTemplateSDK> id2template = templateClient.findIds2TemplateSDK(Collections.singletonList(id)).getData();
+        CouponTemplateSDK couponTemplateSDK =id2template.get(id);
+        return TemplateInfo.to(couponTemplateSDK);
+    }
+
+    /**
      * <h2>用户领取优惠券</h2>
      * 1. 从 TemplateClient 拿到对应的优惠券, 并检查是否过期
      * 2. 根据 limitation 判断用户是否可以领取

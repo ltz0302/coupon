@@ -7,13 +7,18 @@ import com.ltz.coupon.service.IUserService;
 import com.ltz.coupon.vo.AcquireTemplateRequest;
 import com.ltz.coupon.vo.CouponTemplateSDK;
 import com.ltz.coupon.vo.SettlementInfo;
+import com.ltz.coupon.vo.TemplateInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.ltz.coupon.feign.TemplateClient;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <h1>用户服务 Controller</h1>
@@ -24,9 +29,11 @@ import java.util.List;
 public class UserServiceController {
 
     private final IUserService userService;
+    private final TemplateClient templateClient;
     @Autowired
-    public UserServiceController(IUserService userService) {
+    public UserServiceController(IUserService userService, TemplateClient templateClient) {
         this.userService = userService;
+        this.templateClient = templateClient;
     }
 
     /**
@@ -56,6 +63,20 @@ public class UserServiceController {
         return userService.findAvailableTemplate(userId);
     }
 
+
+    /**
+     * <h2>查看优惠券模板详情</h2>
+     * 127.0.0.1:9000/ltz/coupon-distribution/template/info
+     * */
+    @GetMapping("/template/info")
+    @ApiOperation("优惠券模板详情")
+    public TemplateInfo findId2TemplateInfo(@RequestParam("userId") Long userId, @RequestParam("id") Integer id)
+            throws CouponException {
+
+        log.info("user view template info: {} -> {}", userId, id);
+        return userService.findId2TemplateInfo(id);
+    }
+
     /**
      * <h2>用户领取优惠券</h2>
      * 127.0.0.1:9000/ltz/coupon-distribution/acquire/template
@@ -67,6 +88,27 @@ public class UserServiceController {
 
         log.info("Acquire Template: {}", JSON.toJSONString(request));
         return userService.acquireTemplate(request);
+    }
+
+    /**
+     * <h2>用户领取优惠券</h2>
+     * 127.0.0.1:9000/ltz/coupon-distribution/acquire/template
+     * */
+    @GetMapping("/acquire/template")
+    @ApiOperation("领取优惠券")
+    public Coupon acquireTemplate(@RequestParam("userId") Long userId, @RequestParam Integer id)
+            throws CouponException {
+        log.info("user {} acquire template {}.", userId, id);
+
+        Map<Integer, CouponTemplateSDK> id2Template = templateClient.findIds2TemplateSDK(
+                Collections.singletonList(id)
+        ).getData();
+        if (MapUtils.isNotEmpty(id2Template)) {
+            return userService.acquireTemplate(
+                    new AcquireTemplateRequest(userId, id2Template.get(id))
+            );
+        }
+        else throw new CouponException("请求错误,优惠券模板不存在");
     }
 
     /**

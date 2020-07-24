@@ -267,7 +267,7 @@ public class ExecuteManagerTest {
                         GoodsType.WENYU.getCode(),
                         GoodsType.JIAJU.getCode()
                 ))));
-        manjianRule.setWeight(JSON.toJSONString(Collections.emptyList()));
+//        manjianRule.setWeight(JSON.toJSONString(Collections.emptyList()));
         manjianTemplate.setRule(manjianRule);
         manjianInfo.setTemplate(manjianTemplate);
 
@@ -288,9 +288,9 @@ public class ExecuteManagerTest {
                         GoodsType.WENYU.getCode(),
                         GoodsType.JIAJU.getCode()
                 ))));
-        zhekouRule.setWeight(JSON.toJSONString(
-                Collections.singletonList("1001201907120001")
-        ));
+//        zhekouRule.setWeight(JSON.toJSONString(
+//                Collections.singletonList("1001201907120001")
+//        ));
         zhekouTemplate.setRule(zhekouRule);
         zhekouInfo.setTemplate(zhekouTemplate);
 

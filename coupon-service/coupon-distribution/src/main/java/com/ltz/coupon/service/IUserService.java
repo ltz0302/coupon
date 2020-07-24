@@ -6,6 +6,7 @@ import com.ltz.coupon.exception.CouponException;
 import com.ltz.coupon.vo.AcquireTemplateRequest;
 import com.ltz.coupon.vo.CouponTemplateSDK;
 import com.ltz.coupon.vo.SettlementInfo;
+import com.ltz.coupon.vo.TemplateInfo;
 import io.netty.channel.pool.FixedChannelPool;
 
 import java.util.List;
@@ -22,16 +23,25 @@ public interface IUserService {
      * <h2>根据用户 id 和状态查询优惠券记录</h2>
      * @param userId 用户 id
      * @param status 优惠券状态
-     * @return {@link Coupon}s
+     * @return {@link Coupon}
      * */
     List<Coupon> findCouponsByStatus(Long userId, Integer status) throws CouponException;
+
 
     /**
      * <h2>根据用户 id 查找当前可以领取的优惠券模板</h2>
      * @param userId 用户 id
-     * @return {@link CouponTemplateSDK}s
+     * @return {@link CouponTemplateSDK}
      * */
     List<CouponTemplateSDK> findAvailableTemplate(Long userId) throws CouponException;
+
+
+    /**
+     * <h2>根据优惠券模板 id 查找优惠券模板详情</h2>
+     * @param id 优惠券模板id
+     * @return {@link TemplateInfo}
+     * */
+    TemplateInfo findId2TemplateInfo(Integer id) throws CouponException;
 
     /**
      * <h2>用户领取优惠券</h2>
