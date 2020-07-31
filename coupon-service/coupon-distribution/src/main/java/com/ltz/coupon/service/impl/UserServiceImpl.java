@@ -89,7 +89,6 @@ public class UserServiceImpl implements IUserService {
             redisService.addCouponToCache(userId, preTarget, status);
         }
 
-
         //将id为-1的无效优惠券剔除
         preTarget = preTarget.stream().filter(c -> c.getId() != -1).collect(Collectors.toList());
 
