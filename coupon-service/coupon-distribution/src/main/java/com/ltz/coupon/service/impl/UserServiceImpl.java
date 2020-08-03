@@ -177,6 +177,9 @@ public class UserServiceImpl implements IUserService {
     public TemplateInfo findId2TemplateInfo(Integer id) throws CouponException {
         Map<Integer, CouponTemplateSDK> id2template = templateClient.findIds2TemplateSDK(Collections.singletonList(id)).getData();
         CouponTemplateSDK couponTemplateSDK =id2template.get(id);
+        if (couponTemplateSDK == null) {
+            throw new CouponException("Template Is Not Exist: " + id);
+        }
         return TemplateInfo.to(couponTemplateSDK);
     }
 

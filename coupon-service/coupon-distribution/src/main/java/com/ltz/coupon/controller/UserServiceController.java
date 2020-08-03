@@ -81,6 +81,7 @@ public class UserServiceController {
      * <h2>用户领取优惠券</h2>
      * 127.0.0.1:9000/ltz/coupon-distribution/acquire/template
      * */
+    /* 废弃，现在使用GET方式在优惠券模板详情页直接请求优惠券 */
     @PostMapping("/acquire/template")
     @ApiOperation("领取优惠券")
     public Coupon acquireTemplate(@RequestBody AcquireTemplateRequest request)
